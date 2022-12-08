@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(widget.user["Username"] + " 's Profile"),
+          title: Text(widget.user["Username"] + "'s Profile"),
           actions: [
             IconButton(
                 onPressed: (() {
