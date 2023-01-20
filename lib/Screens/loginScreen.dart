@@ -6,8 +6,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   var emailCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   String errorMsg = "";
 
@@ -60,6 +58,13 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       count++;
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailCtrl.dispose();
+    passwordCtrl.dispose();
   }
 
   @override

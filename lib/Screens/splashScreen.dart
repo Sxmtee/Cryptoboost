@@ -21,7 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 5), () async {
       User? user = FirebaseAuth.instance.currentUser;
       if (user == null) {
-        var route = MaterialPageRoute(builder: (context) => LoginScreen());
+        var route =
+            MaterialPageRoute(builder: (context) => const LoginScreen());
         Navigator.push(context, route);
       } else {
         DocumentSnapshot doc = await FirebaseFirestore.instance
@@ -48,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         color: Colors.white10,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -58,17 +59,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(45),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage("assets/images/crypto.jpg"),
                         fit: BoxFit.cover))),
-            Text(
+            const Text(
               "CRYPTOBOOST",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: Colors.lightBlueAccent),
             ),
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
               color: Colors.lightBlueAccent,
             )
           ],

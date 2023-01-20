@@ -1,4 +1,3 @@
-import 'package:cryptoboost/Screens/loginScreen.dart';
 import 'package:cryptoboost/Screens/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

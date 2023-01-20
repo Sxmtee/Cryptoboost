@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsDetails extends StatefulWidget {
@@ -29,7 +27,7 @@ class _NewsDetailsState extends State<NewsDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Visibility(
                 visible: isLoading,
@@ -42,7 +40,7 @@ class _NewsDetailsState extends State<NewsDetails> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(bottom: 1),
+              padding: const EdgeInsets.only(bottom: 1),
               height: size.height * 0.8,
               child: WebView(
                 initialUrl: widget.news["url"],

@@ -4,8 +4,6 @@ import 'package:cryptoboost/Screens/loginScreen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -19,7 +17,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   var usernameCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   String errorMsg = "";
 
@@ -57,12 +55,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    emailCtrl.dispose();
+    usernameCtrl.dispose();
+    passwordCtrl.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: 50, left: 30, right: 30),
+          margin: const EdgeInsets.only(top: 50, left: 30, right: 30),
           child: Form(
             key: _formKey,
             child: Column(
@@ -72,23 +78,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     alignment: Alignment.topCenter,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(45),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                             image: AssetImage("assets/images/crypto.jpg"),
                             fit: BoxFit.cover))),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   controller: emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                      label: Text("E-mail"),
+                      label: const Text("E-mail"),
                       hintText: "Enter Your E-mail Address",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.email)),
+                      prefixIcon: const Icon(Icons.email)),
                   validator: (value) {
                     var emailValid = EmailValidator.validate(value!);
                     if (!emailValid) {
@@ -96,54 +102,54 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   controller: usernameCtrl,
                   decoration: InputDecoration(
-                      label: Text("Username"),
+                      label: const Text("Username"),
                       hintText: "Enter Your Username",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.person)),
+                      prefixIcon: const Icon(Icons.person)),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Fill This Field";
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   controller: passwordCtrl,
                   decoration: InputDecoration(
-                      label: Text("Password"),
+                      label: const Text("Password"),
                       hintText: "Enter Your Password",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.lock)),
+                      prefixIcon: const Icon(Icons.lock)),
                   validator: (value) {
                     if (value!.length < 6) {
                       return "Password weak";
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Visibility(
-                  child: CircularProgressIndicator(),
                   visible: isLoading,
+                  child: const CircularProgressIndicator(),
                 ),
                 Text(
                   errorMsg,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
                 MaterialButton(
                   onPressed: () {
@@ -151,35 +157,35 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       register();
                     }
                   },
-                  child: Text(
+                  color: Colors.blue,
+                  shape: const StadiumBorder(),
+                  minWidth: 200,
+                  height: 50,
+                  child: const Text(
                     "Register",
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
-                  color: Colors.blue,
-                  shape: StadiumBorder(),
-                  minWidth: 200,
-                  height: 50,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already Have An Account ?",
                       style: TextStyle(fontSize: 17, color: Colors.black),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     GestureDetector(
                       onTap: () {
                         var route = MaterialPageRoute(
-                            builder: (context) => LoginScreen());
+                            builder: (context) => const LoginScreen());
                         Navigator.push(context, route);
                       },
-                      child: Text("Login",
+                      child: const Text("Login",
                           style: TextStyle(
                               fontSize: 17,
                               color: Colors.black,
