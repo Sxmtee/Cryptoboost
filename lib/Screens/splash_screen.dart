@@ -1,12 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cryptoboost/Screens/homeScreen.dart';
-import 'package:cryptoboost/Screens/loginScreen.dart';
+import 'package:cryptoboost/Screens/home_screen.dart';
+import 'package:cryptoboost/Screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -37,7 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
           "Email": doc["Email"]
         };
         var route = MaterialPageRoute(
-            builder: (BuildContext context) => HomeScreen(user: userDetails));
+          builder: (BuildContext context) => HomeScreen(user: userDetails),
+        );
         Navigator.push(context, route);
       }
     });
@@ -55,19 +56,23 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-                height: size.height / 2,
-                alignment: Alignment.topCenter,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(45),
-                    image: const DecorationImage(
-                        image: AssetImage("assets/images/crypto.jpg"),
-                        fit: BoxFit.cover))),
+              height: size.height / 2,
+              alignment: Alignment.topCenter,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(45),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images/crypto.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             const Text(
               "CRYPTOBOOST",
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.lightBlueAccent),
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.lightBlueAccent,
+              ),
             ),
             const CircularProgressIndicator(
               color: Colors.lightBlueAccent,

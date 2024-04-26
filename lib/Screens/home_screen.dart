@@ -1,6 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:convert';
 
-import 'package:cryptoboost/Screens/loginScreen.dart';
+import 'package:cryptoboost/Screens/login_screen.dart';
 import 'package:cryptoboost/Utils/snackBar.dart';
 import 'package:cryptoboost/Widgets/singlePost.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,8 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
-  Map user;
-  HomeScreen({super.key, required this.user});
+  final Map user;
+  const HomeScreen({super.key, required this.user});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -44,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () async {
         goBack();
         showSnackBar(context, "Double Tap to Exit");
-        return await false;
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -52,27 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(widget.user["Username"] + "'s Profile"),
           actions: [
             IconButton(
-                onPressed: (() {
-                  showAlert(context);
-                }),
-                icon: Icon(Icons.logout_outlined))
+              onPressed: (() {
+                showAlert(context);
+              }),
+              icon: const Icon(Icons.logout_outlined),
+            )
           ],
         ),
         body: FutureBuilder(
           future: fetchNews(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                 child: Text("NO DATA"),
               );
             }
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("ERROR OCCURED"),
               );
             }
@@ -93,24 +96,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   showAlert(BuildContext context) {
     AlertDialog alertDialog = AlertDialog(
-      title: Text("Log Out"),
-      content: Text("Are you Sure you want to logout"),
+      title: const Text("Log Out"),
+      content: const Text("Are you Sure you want to logout"),
       actions: [
         MaterialButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text("Cancel"),
           color: Colors.lightBlueAccent,
+          child: const Text("Cancel"),
         ),
         MaterialButton(
           onPressed: () {
             FirebaseAuth.instance.signOut();
-            var route = MaterialPageRoute(builder: (context) => LoginScreen());
+            var route = MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            );
             Navigator.push(context, route);
           },
-          child: Text("Logout"),
           color: Colors.red,
+          child: const Text("Logout"),
         )
       ],
     );

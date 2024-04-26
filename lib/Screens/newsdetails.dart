@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsDetails extends StatefulWidget {
-  Map news;
-  NewsDetails({super.key, required this.news});
+  final Map news;
+  const NewsDetails({super.key, required this.news});
 
   @override
   State<NewsDetails> createState() => _NewsDetailsState();
