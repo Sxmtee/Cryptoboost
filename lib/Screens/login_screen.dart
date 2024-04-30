@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cryptoboost/Screens/home_screen.dart';
 import 'package:cryptoboost/Screens/registration_screen.dart';
-import 'package:cryptoboost/Utils/snackBar.dart';
+import 'package:cryptoboost/Utils/snack_bar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoading = true;
     });
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: emailCtrl.text, password: passwordCtrl.text);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailCtrl.text,
+        password: passwordCtrl.text,
+      );
       var id = userCredential.user!.uid;
       DocumentSnapshot doc =
           await FirebaseFirestore.instance.collection("users").doc(id).get();
@@ -41,7 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
         "Email": doc["Email"]
       };
       var route = MaterialPageRoute(
-          builder: (context) => HomeScreen(user: userDetails));
+        builder: (context) => HomeScreen(user: userDetails),
+      );
       Navigator.push(context, route);
     } catch (e) {
       setState(() {
@@ -199,9 +202,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           "Register",
                           style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                            fontSize: 17,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       )
                     ],

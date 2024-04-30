@@ -3,8 +3,8 @@
 import 'dart:convert';
 
 import 'package:cryptoboost/Screens/login_screen.dart';
-import 'package:cryptoboost/Utils/snackBar.dart';
-import 'package:cryptoboost/Widgets/singlePost.dart';
+import 'package:cryptoboost/Utils/snack_bar.dart';
+import 'package:cryptoboost/Widgets/single_post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   fetchNews() async {
     var uri = Uri.parse(
-        "https://eventregistry.org/api/v1/article/getArticles?resultType=articles&keyword=Bitcoin&keyword=Ethereum&keyword=Litecoin&keywordOper=or&lang=eng&articlesSortBy=date&includeArticleConcepts=true&includeArticleCategories=true&articleBodyLen=300&articlesCount=10&apiKey=45579897-104d-4d14-987a-ea9427fb31c4");
+      "https://eventregistry.org/api/v1/article/getArticles?resultType=articles&keyword=Bitcoin&keyword=Ethereum&keyword=Litecoin&keywordOper=or&lang=eng&articlesSortBy=date&includeArticleConcepts=true&includeArticleCategories=true&articleBodyLen=300&articlesCount=10&apiKey=45579897-104d-4d14-987a-ea9427fb31c4",
+    );
     var request = await http.get(uri);
     if (request.statusCode == 200) {
       var response = jsonDecode(request.body);

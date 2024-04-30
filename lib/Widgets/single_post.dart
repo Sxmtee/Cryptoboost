@@ -2,8 +2,8 @@ import 'package:cryptoboost/Screens/newsdetails.dart';
 import 'package:flutter/material.dart';
 
 class SinglePost extends StatefulWidget {
-  Map post;
-  SinglePost({super.key, required this.post});
+  final Map post;
+  const SinglePost({super.key, required this.post});
 
   @override
   State<SinglePost> createState() => _SinglePostState();
