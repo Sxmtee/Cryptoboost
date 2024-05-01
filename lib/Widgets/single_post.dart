@@ -40,7 +40,8 @@ class _SinglePostState extends State<SinglePost> {
     return GestureDetector(
       onTap: () {
         var route = MaterialPageRoute(
-            builder: (context) => NewsDetails(news: widget.post));
+          builder: (context) => NewsDetails(news: widget.post),
+        );
         Navigator.push(context, route);
       },
       child: Card(
@@ -50,13 +51,11 @@ class _SinglePostState extends State<SinglePost> {
           width: size.width,
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                color: Colors.grey[100],
-                child: Text(
-                  returnTitle(widget.post["title"]),
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+              Text(
+                returnTitle(widget.post["title"]),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
@@ -71,10 +70,8 @@ class _SinglePostState extends State<SinglePost> {
               const SizedBox(
                 height: 5,
               ),
-              Container(
-                width: double.infinity,
-                color: Colors.grey[100],
-                child: Text(returnsubTitle(widget.post["title"])),
+              Text(
+                returnsubTitle(widget.post["title"]),
               ),
               const SizedBox(
                 height: 2,
@@ -86,7 +83,9 @@ class _SinglePostState extends State<SinglePost> {
                   children: [
                     const Icon(Icons.link),
                     Expanded(
-                      child: Text(returnUrl(widget.post["url"])),
+                      child: Text(
+                        returnUrl(widget.post["url"]),
+                      ),
                     )
                   ],
                 ),

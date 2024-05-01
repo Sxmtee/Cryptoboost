@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "https://eventregistry.org/api/v1/article/getArticles?resultType=articles&keyword=Bitcoin&keyword=Ethereum&keyword=Litecoin&keywordOper=or&lang=eng&articlesSortBy=date&includeArticleConcepts=true&includeArticleCategories=true&articleBodyLen=300&articlesCount=10&apiKey=45579897-104d-4d14-987a-ea9427fb31c4",
     );
     var request = await http.get(uri);
+
     if (request.statusCode == 200) {
       var response = jsonDecode(request.body);
       var articles = response["articles"];
@@ -82,11 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
             }
 
             List posts = snapshot.data as List;
+
             return ListView.builder(
               itemCount: posts.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return SinglePost(post: posts[index]);
+                return SinglePost(
+                  post: posts[index],
+                );
               },
             );
           },
