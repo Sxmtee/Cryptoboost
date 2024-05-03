@@ -29,13 +29,13 @@ class _SplashScreenState extends State<SplashScreen> {
             .collection("users")
             .doc(user.uid)
             .get();
-        // print(doc["Username"]);
 
         var userDetails = {
           "user_id": doc["user_id"],
           "Username": doc["Username"],
           "Email": doc["Email"]
         };
+
         var route = MaterialPageRoute(
           builder: (BuildContext context) => HomeScreen(user: userDetails),
         );

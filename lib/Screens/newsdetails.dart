@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -26,14 +27,20 @@ class _NewsDetailsState extends State<NewsDetails> {
             } else {
               isLoading = true;
             }
-            print("WebView is Loading: Progress($progress%)");
+            if (kDebugMode) {
+              print("WebView is Loading: Progress($progress%)");
+            }
             setState(() {});
           },
           onPageStarted: (String url) {
-            print("Page is Starting: ($url)");
+            if (kDebugMode) {
+              print("Page is Starting: ($url)");
+            }
           },
           onPageFinished: (String url) {
-            print("Page has Finished: ($url)");
+            if (kDebugMode) {
+              print("Page has Finished: ($url)");
+            }
           },
         ),
       )

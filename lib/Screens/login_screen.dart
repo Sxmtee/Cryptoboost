@@ -34,14 +34,18 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailCtrl.text,
         password: passwordCtrl.text,
       );
+
       var id = userCredential.user!.uid;
+
       DocumentSnapshot doc =
           await FirebaseFirestore.instance.collection("users").doc(id).get();
+
       var userDetails = {
         "user_id": doc["user_id"],
         "Username": doc["Username"],
         "Email": doc["Email"]
       };
+
       var route = MaterialPageRoute(
         builder: (context) => HomeScreen(user: userDetails),
       );

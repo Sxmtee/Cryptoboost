@@ -28,17 +28,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     });
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailCtrl.text, password: passwordCtrl.text);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailCtrl.text,
+        password: passwordCtrl.text,
+      );
+
       var id = userCredential.user!.uid;
+
       var userDetails = {
         "user_id": id,
         "Username": usernameCtrl.text,
         "Email": emailCtrl.text,
         "Password": passwordCtrl.text
       };
+
       FirebaseFirestore.instance.collection("users").doc(id).set(userDetails);
+
       var route = MaterialPageRoute(
         builder: (context) => HomeScreen(user: userDetails),
       );
